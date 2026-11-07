@@ -1,0 +1,761 @@
+{
+  "meta": {
+    "tag": "baseline",
+    "created": "2026-11-07T19:01:55",
+    "llm_model": "openai/gpt-oss-120b",
+    "judge_model": "openai/gpt-oss-120b",
+    "guard_model": "openai/gpt-oss-120b",
+    "embed_model": "BAAI/bge-small-en-v1.5",
+    "top_k": 3,
+    "suite": "policy"
+  },
+  "cases": [
+    {
+      "actual_output": "A credit‑card refund usually takes **5 to 10 business days** after the refund is approved. It will appear on your next card statement.",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-06",
+        "kb-13"
+      ],
+      "retrieval_context": [
+        "Frequently asked questions - How long will my refund take?\n**How long will my refund take?**\nCredit card 5 to 10 business days, debit card 3 to 7, boleto 5 to 8 after bank details, voucher immediately. This counts from approval.",
+        "Refund process and how long it takes - How long the money takes to arrive\nAfter approval:\n\n| Original payment method | Time to receive the refund |\n|---|---|\n| Credit card | 5 to 10 business days. It can appear on your next statement. |\n| Debit card | 3 to 7 business days. |\n| Boleto | 5 to 8 business days after you send us your bank account details. |\n| Voucher | Immediately, as voucher balance. |",
+        "Refund process and how long it takes - Credit card installments\nIf you paid in installments, the refund follows the same installments. The bank decides how it appears on your statement."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the two relevant nodes (rank 1 and rank 2) each contain the exact timeframe – \"Credit card 5 to 10 business days\" and \"5 to 10 business days. It can appear on your next statement\" – directly answering the query, while the only irrelevant node (rank 3) lacks this information",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because sentence 1 is directly supported by node 1 and node 2 in the retrieval context.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly answered the question about credit card refund timing with no irrelevant statements.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output includes all key elements from the expected output: 5 to 10 business days, after approval, and appearance on the next statement, with no contradictions, thus fully matching the required information.",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-06', 'kb-13']; expected ['kb-06', 'kb-13']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p01",
+      "input": "How long does a credit card refund take?"
+    },
+    {
+      "actual_output": "Your debit‑card refund will be credited in **3 to 7 business days** after it’s approved.",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-06",
+        "kb-13"
+      ],
+      "retrieval_context": [
+        "Frequently asked questions - How long will my refund take?\n**How long will my refund take?**\nCredit card 5 to 10 business days, debit card 3 to 7, boleto 5 to 8 after bank details, voucher immediately. This counts from approval.",
+        "Refund process and how long it takes - How long the money takes to arrive\nAfter approval:\n\n| Original payment method | Time to receive the refund |\n|---|---|\n| Credit card | 5 to 10 business days. It can appear on your next statement. |\n| Debit card | 3 to 7 business days. |\n| Boleto | 5 to 8 business days after you send us your bank account details. |\n| Voucher | Immediately, as voucher balance. |",
+        "Refund process and how long it takes - Steps\n1. You request a refund through the assistant or a human agent.\n2. If a return is needed, you send the item back using the return label.\n3. We receive and inspect the item. This takes 2 to 3 business days after it arrives.\n4. The refund is approved and sent to your original payment method.\n\nFor items that do not need a return (for example unavailable or lost orders), the refund starts right after approval."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the two relevant nodes (rank 1 and rank 2) each state \"debit card 3 to 7 business days\" providing the exact answer, and the only irrelevant node (rank 3) is placed after them, so irrelevant content is correctly ranked lower.",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because sentence 1 is directly backed by node 1 and node 2 in the retrieval context.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the answer directly addressed the refund timeline question with no irrelevant content.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output states the refund will be credited in 3 to 7 business days after approval, which exactly matches the expected statement of 3 to 7 business days after approval, with no contradictory information.",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-06', 'kb-13']; expected ['kb-06']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p02",
+      "input": "Mere debit card ka refund kitne din me aayega?"
+    },
+    {
+      "actual_output": "Sure! Since you paid with **boleto**, the refund works like this:\n\n1. **Request the refund** (you can do it through the “My Orders” page or ask us to open a request for you).  \n2. Once the refund is **approved**, we’ll ask you for your **bank‑account details** so we can transfer the money back.  \n3. After we receive those details, the amount will be deposited in **5 – 8 business days**.\n\nIf you’d like us to start the refund request now, just let me know the order ID (or which item you want refunded) and the reason (e.g., change of mind, defective, etc.). I’ll take care of the rest!",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-06",
+        "kb-10",
+        "kb-13"
+      ],
+      "retrieval_context": [
+        "Refund process and how long it takes - How long the money takes to arrive\nAfter approval:\n\n| Original payment method | Time to receive the refund |\n|---|---|\n| Credit card | 5 to 10 business days. It can appear on your next statement. |\n| Debit card | 3 to 7 business days. |\n| Boleto | 5 to 8 business days after you send us your bank account details. |\n| Voucher | Immediately, as voucher balance. |",
+        "Frequently asked questions - How long will my refund take?\n**How long will my refund take?**\nCredit card 5 to 10 business days, debit card 3 to 7, boleto 5 to 8 after bank details, voucher immediately. This counts from approval.",
+        "Payments, installments and vouchers - Boleto\n- A boleto is valid for 3 days after it is created.\n- Payment confirmation can take up to 2 business days after you pay.\n- An unpaid boleto cancels the order automatically."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the two relevant nodes (rank 1 and rank 2) that mention \"Boleto | 5 to 8 business days after you send us your bank account details\" and \"boleto 5 to 8 after bank details\" appear before the irrelevant node (rank 3), whose reason notes it only discusses \"boleto validity, paym",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the single sentence aligns directly with node 1 (and node 2) in the retrieval context, which explicitly state the 5‑to‑8 business day refund timeline after bank account details are sent.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 0.8571,
+          "passed": true,
+          "reason": "The score is 0.86 because the response only acknowledges the query without explaining how to obtain the refund or its timing, leaving key information missing.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output states that the refund will be deposited in 5 – 8 business days after receiving the customer's bank‑account details, which matches the expected statement exactly. Additional procedural details do not contradict the required information.",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-06', 'kb-10', 'kb-13']; expected ['kb-06']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p03",
+      "input": "I paid by boleto. How do I get my refund and how long does it take?"
+    },
+    {
+      "actual_output": "जब आप ऑर्डर को वाउचर से भुगतान करते हैं, तो रिफंड भी वाउचर बैलेंस के रूप में ही वापस आता है।  \n\n1. रिफंड का अनुरोध करें (मैं मदद कर सकता हूँ)।  \n2. यदि वस्तु को वापस करना है, तो रिटर्न लेबल से भेजें।  \n3. हमें वस्तु मिलते‑ही 2‑3 कार्यदिवस में जांच कर रिफंड को मंज़ूरी देंगे।  \n4. मंज़ूरी के बाद रिफंड तुरंत आपके वाउचर बैलेंस में जोड़ दिया जाएगा।  \n\nइसलिए रिफंड मिलने में कुछ दिनों की प्रतीक्षा नहीं करनी पड़ेगी; यह तुरंत आपके वाउचर में दिख जाएगा। यदि आप रिफंड का अनुरोध करना चाहते हैं, तो बताइए‑मैं आगे बढ़ा देता हूँ!",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-06",
+        "kb-10"
+      ],
+      "retrieval_context": [
+        "Payments, installments and vouchers - Vouchers\n- Vouchers are store credit. They can be used on any order.\n- Late-delivery vouchers are valid for 90 days. Other vouchers are valid for 180 days.\n- Vouchers cannot be exchanged for cash.\n- When an order paid with a voucher is refunded, the amount returns as voucher balance.",
+        "Refund process and how long it takes - Steps\n1. You request a refund through the assistant or a human agent.\n2. If a return is needed, you send the item back using the return label.\n3. We receive and inspect the item. This takes 2 to 3 business days after it arrives.\n4. The refund is approved and sent to your original payment method.\n\nFor items that do not need a return (for example unavailable or lost orders), the refund starts right after approval.",
+        "Refund process and how long it takes - How long the money takes to arrive\nAfter approval:\n\n| Original payment method | Time to receive the refund |\n|---|---|\n| Credit card | 5 to 10 business days. It can appear on your next statement. |\n| Debit card | 3 to 7 business days. |\n| Boleto | 5 to 8 business days after you send us your bank account details. |\n| Voucher | Immediately, as voucher balance. |"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.8333,
+          "passed": true,
+          "reason": "The score is 0.83 because, while the first node correctly notes “When an order paid with a voucher is refunded, the amount returns as voucher balance,” and the third node confirms “Voucher | Immediately, as voucher balance,” an irrelevant node appears in rank 2 – its reason says it “does not mention",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because sentence 1 directly aligns with node 1 and node 3 in the retrieval context, perfectly confirming the statement.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly answered the refund query with no irrelevant statements.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 0.2,
+          "passed": false,
+          "reason": "The Expected Output states only that voucher‑paid orders are refunded immediately as voucher balance. The Actual Output adds extra steps (refund request, return label, 2‑3 business day inspection) and suggests a waiting period before approval, which contradicts the immediate refund claim. Because ke",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-06', 'kb-10']; expected ['kb-06', 'kb-10']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p04",
+      "input": "Maine voucher se pay kiya tha, refund kaise milega?"
+    },
+    {
+      "actual_output": "You can return most items within **30 calendar days** after the delivery date shown in your order.",
+      "tools_used": [
+        "search_policy",
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-01",
+        "kb-04",
+        "kb-05"
+      ],
+      "retrieval_context": [
+        "About KartNest and what the support assistant can do - What the support assistant CANNOT do\n- It cannot place an order, add items to an order, or change the items in an order.\n- It cannot change a delivery address, a payment method or account details.\n- It cannot cancel an order directly (see the cancellations document).\n- It cannot approve large refunds by itself (see the refund approval document).\n- It cannot show you information about orders that belong to another account.\n\nIf you want to place a new order, please use the KartNest website or app.",
+        "About KartNest and what the support assistant can do - What the support assistant CAN do\n- Tell you the status of your order and explain what each status means.\n- Tell you the estimated delivery date and how many days an order has taken so far.\n- Explain delivery times, delays, returns, refunds, cancellations and payment rules.\n- Check whether an item is eligible for a refund and submit a refund request for you.\n- Tell you the status of a refund you already requested.\n- Hand your case to a human support agent when needed.",
+        "About KartNest and what the support assistant can do - Overview\nKartNest is an online marketplace based in Brazil. Customers buy products that are sold and shipped by independent sellers. All amounts in these documents are in Brazilian reais (R$).",
+        "Returns policy - Return window\nYou can return most items within 30 calendar days after the delivery date shown in your order.",
+        "Refund policy - when you are eligible and how much you get - When you are eligible for a refund\n1. You returned the item within the 30-day return window and we received and inspected it.\n2. The item arrived defective, damaged or different from the description (reported within 7 days of delivery).\n3. The order was never delivered and the carrier investigation confirmed it is lost.\n4. The order status is unavailable or canceled and you already paid.\n5. The order was delivered more than 10 calendar days after the estimated date and you cancel before delivery (see delivery document)."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.325,
+          "passed": false,
+          "reason": "The score is 0.33 because the first three nodes (ranks 1‑3) are irrelevant – they \"does not mention any return window or return policy\", \"provides no specific information about the return window\", and \"does not contain any details about return periods\" – and they are ranked above the two relevant no",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because sentence 1 is directly supported by node 4 in the retrieval context, which explicitly states the 30‑day return policy for most items.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the answer directly addressed the question about the return window with no irrelevant content.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 0.4,
+          "passed": false,
+          "reason": "The actual answer correctly states the 30‑day return window after delivery, matching the primary fact, but it omits the essential condition that items must be unused and in original packaging with tags and accessories, which is a key element of the expected output. Hence it is only partially aligned",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "retrieved ['kb-01', 'kb-04', 'kb-05']; expected ['kb-04', 'kb-13']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p05",
+      "input": "What is the return window?"
+    },
+    {
+      "actual_output": "Sure! If you return a product because you changed your mind, you can get a refund as long as the item is unused, still in its original packaging, and you request the return within 30 days after delivery.\n\n**Return cost**  \n- KartNest charges a **R$ 15** fee for the return label (you can use our label for this fee).\n\n**Refund amount**  \n- The refund will be the purchase price of the shirt **minus the R$ 15 label fee** (provided the return meets the conditions above).\n\nTo give you the exact amount you’ll receive, I’ll need to check the specific order and item. Could you please share the **order ID** (or let me know which recent order contains the shirt)? Once I have that, I can confirm eligibility and the precise refund value.",
+      "tools_used": [
+        "query_db",
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-01",
+        "kb-13"
+      ],
+      "retrieval_context": [
+        "Frequently asked questions - Can I return an item if I just changed my mind?\n**Can I return an item if I just changed my mind?**\nYes, within 30 days after delivery, if it is unused and in its original packaging. A R$ 15 return label fee applies if you use our label.",
+        "About KartNest and what the support assistant can do - What the support assistant CANNOT do\n- It cannot place an order, add items to an order, or change the items in an order.\n- It cannot change a delivery address, a payment method or account details.\n- It cannot cancel an order directly (see the cancellations document).\n- It cannot approve large refunds by itself (see the refund approval document).\n- It cannot show you information about orders that belong to another account.\n\nIf you want to place a new order, please use the KartNest website or app.",
+        "About KartNest and what the support assistant can do - What the support assistant CAN do\n- Tell you the status of your order and explain what each status means.\n- Tell you the estimated delivery date and how many days an order has taken so far.\n- Explain delivery times, delays, returns, refunds, cancellations and payment rules.\n- Check whether an item is eligible for a refund and submit a refund request for you.\n- Tell you the status of a refund you already requested.\n- Hand your case to a human support agent when needed."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the top‑ranked node (rank 1) directly answers the query with the policy detail: \"A R$ 15 return label fee applies if you use our label\", while the later nodes (ranks 2 and 3) are irrelevant, merely listing unsupported actions or generic capabilities, and are correctly place",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because sentence 2 is supported by node 1 in the retrieval context, while sentence 1 lacks any supporting node.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 0.875,
+          "passed": true,
+          "reason": "The score is 0.88 because the response included the filler phrase \"Sure!\" which is unrelated to the user's question about refund amount and return cost, preventing a perfect relevance rating.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 0.4,
+          "passed": false,
+          "reason": "The actual response includes the R$ 15 label fee deduction and says the refund is the purchase price minus that fee, matching part of the expected output. However, it fails to mention that the shipping fee is not refunded, which is a key element of the expected answer, so not all required facts are ",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "retrieved ['kb-01', 'kb-13']; expected ['kb-04', 'kb-05']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p06",
+      "input": "I changed my mind about a shirt. How much do I get back and what does the return cost me?"
+    },
+    {
+      "actual_output": "We’re sorry, but opened underwear can’t be returned just because you changed your mind. According to our returns policy, personal‑hygiene items such as underwear, swimwear, etc., are not eligible for a “change‑of‑mind” return once they’ve been opened or unsealed.  \n\nIf the item arrived defective, damaged, or different from what was described, you can still request a return. Otherwise, we’re unable to process a refund for this reason. If you need further help, feel free to contact a human support agent.",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-04",
+        "kb-13"
+      ],
+      "retrieval_context": [
+        "Returns policy - Items that cannot be returned for change of mind\n- Perishable food and drinks.\n- Underwear, swimwear and personal hygiene items once opened or unsealed.\n- Gift cards and digital products.\n- Items made or personalized for you.\n\nThese items can still be returned if they arrive defective, damaged or different from the description.",
+        "Returns policy - Conditions for a return\n- The item is unused and in its original packaging, with all tags and accessories.\n- You have not removed or damaged the product labels.",
+        "Frequently asked questions - Can I return an item if I just changed my mind?\n**Can I return an item if I just changed my mind?**\nYes, within 30 days after delivery, if it is unused and in its original packaging. A R$ 15 return label fee applies if you use our label."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node says \"Underwear, swimwear and personal hygiene items once opened or unsealed\" cannot be returned, the second node notes the condition \"The item is unused and in its original packaging,\" and the third node repeats that returns require the item to be unused and",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 0.6667,
+          "passed": false,
+          "reason": "The score is 0.67 because sentences 2 and 3 of the expected output are directly supported by node 1 in the retrieval context, while sentence 1 ('No.') has no matching node.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly answered the question with no irrelevant statements.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output includes all key points from the expected output—stating that opened underwear (and similar personal‑hygiene items like swimwear) cannot be returned for change of mind, and that returns are allowed only if the item is defective, damaged, or not as described. No contradictions are p",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-04', 'kb-13']; expected ['kb-04']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p07",
+      "input": "Can I return opened underwear because I don't like it?"
+    },
+    {
+      "actual_output": "You have **7 calendar days** from the delivery date to report a defective phone.  \nIf the claim is accepted, **return shipping is free** – KartNest covers the cost.",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-05",
+        "kb-08"
+      ],
+      "retrieval_context": [
+        "Refund policy - when you are eligible and how much you get - When you are eligible for a refund\n1. You returned the item within the 30-day return window and we received and inspected it.\n2. The item arrived defective, damaged or different from the description (reported within 7 days of delivery).\n3. The order was never delivered and the carrier investigation confirmed it is lost.\n4. The order status is unavailable or canceled and you already paid.\n5. The order was delivered more than 10 calendar days after the estimated date and you cancel before delivery (see delivery document).",
+        "Damaged, wrong or missing items and packages marked delivered - Damaged, defective or wrong item\n- Report it within 7 calendar days after delivery.\n- Send clear photos of the item, the label and the packaging.\n- If the claim is accepted, you can choose a refund or a replacement from the seller. Return shipping is free.",
+        "Damaged, wrong or missing items and packages marked delivered - What happens after 7 or 15 days\nClaims made after these deadlines are not accepted automatically. A human agent can review them in special cases."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the only irrelevant node (node 3) – which \"only discusses claims made after the 7‑day deadline and does not provide information about return shipping\" – is ranked after the two relevant nodes (node 1 and node 2) that directly address the reporting window and free return shi",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because both sentences in the expected output are directly covered by node 2 in the retrieval context, which mentions free return shipping for defective items and the 7‑day reporting requirement with photos.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly answered the user's question with no irrelevant content.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 0.7,
+          "passed": true,
+          "reason": "The answer correctly states the 7‑day reporting window and that return shipping is free, matching two core points, but it omits the expected requirement to provide photos of the item, label, and packaging, a key element of the expected output, so it is not fully aligned.",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "retrieved ['kb-05', 'kb-08']; expected ['kb-08', 'kb-04']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p08",
+      "input": "My phone arrived defective. Who pays the return shipping and how long do I have to report it?"
+    },
+    {
+      "actual_output": "I’m sorry, but I’m unable to retrieve the specific policy details for this situation right now. Please reach out to a human support agent for assistance with your delivery issue.",
+      "tools_used": [
+        "query_db",
+        "query_db",
+        "search_policy"
+      ],
+      "retrieved_docs": [],
+      "retrieval_context": [],
+      "scores": {
+        "answer_relevancy": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the response included an irrelevant apology about not retrieving policy details, which does not address the user's question about a missing package.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The actual output does not include any of the required steps such as waiting 2 business days, checking with neighbors, opening a claim within 15 days, investigation timeline, or refund/replacement details. It instead apologizes and redirects to human support, which contradicts the expected policy in",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "retrieved []; expected ['kb-08']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p09",
+      "input": "The order says delivered but I never got the package. What should I do?"
+    },
+    {
+      "actual_output": "Refunds up to **R$ 150** are approved automatically by the system (as long as the order and tracking data confirm the case). Anything above that is reviewed by a human agent.",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-07"
+      ],
+      "retrieval_context": [
+        "Refund approval limits and human review - Approval levels\n| Refund amount | Who approves | How long |\n|---|---|---|\n| Up to R$ 150 | Automatic, if our order and tracking data confirm the case | Immediately |\n| Above R$ 150 up to R$ 800 | A human support agent | Within 2 business days |\n| Above R$ 800 | The senior support team | Within 5 business days |",
+        "Refund approval limits and human review - Extra review\nA refund is always reviewed by a human, whatever the amount, if:\n- You made 3 or more refund requests in the last 60 days.\n- The data does not match your claim (for example, tracking shows delivered but you report a damaged item without photos).\n- There are signs of fraud on the account.",
+        "Refund approval limits and human review - Overview\nThe assistant can submit refund requests, but approval depends on the amount and on the case."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node (rank 1) directly answers with \"Up to R$ 150 | Automatic...\" while the second and third nodes (ranks 2 and 3) are irrelevant, so the relevant information is ranked highest.",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because sentence 1 of the expected output is fully covered by node(s) in retrieval context: the first node’s table rows explicitly detail the automatic approval up to R$ 150, the human‑agent decision for R$ 150‑R$ 800 within 2 business days, and the senior‑team decision for amounts",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly answered the question with no irrelevant statements, so it cannot be higher.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 0.4,
+          "passed": false,
+          "reason": "The actual output correctly states that refunds up to R$ 150 are approved automatically when order and tracking data confirm the case, matching the first key element. However, it omits the expected details about the decision process for amounts above R$ 150 (human agent within 2 business days up to ",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-07']; expected ['kb-07']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p10",
+      "input": "Up to what amount is a refund approved automatically?"
+    },
+    {
+      "actual_output": "According to our policy, a refund of up to R$ 150 is usually approved automatically **only if** the order and tracking data match the claim.  \n\nHowever, because you have already made **3 refund requests in the last 60 days**, every new refund – even a small one – will be sent to a human support agent for review. So the next request will not be approved automatically; it will be examined by our team first. If you’d like to go ahead and submit the new refund, just let me know the order and item details.",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-07"
+      ],
+      "retrieval_context": [
+        "Refund approval limits and human review - Approval levels\n| Refund amount | Who approves | How long |\n|---|---|---|\n| Up to R$ 150 | Automatic, if our order and tracking data confirm the case | Immediately |\n| Above R$ 150 up to R$ 800 | A human support agent | Within 2 business days |\n| Above R$ 800 | The senior support team | Within 5 business days |",
+        "Refund approval limits and human review - Extra review\nA refund is always reviewed by a human, whatever the amount, if:\n- You made 3 or more refund requests in the last 60 days.\n- The data does not match your claim (for example, tracking shows delivered but you report a damaged item without photos).\n- There are signs of fraud on the account.",
+        "Refund approval limits and human review - Overview\nThe assistant can submit refund requests, but approval depends on the amount and on the case."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the first node (rank 1) is irrelevant – its reason says \"The table only lists amount thresholds for automatic or human approval (e.g., up to R$150 automatic) and does not mention the rule about 3 or more refund requests,\" which does not address the 3‑request condition – and",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because sentence 1’s core statement is backed by node 2 in the retrieval context, but the leading word “No.” lacks any supporting evidence.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 0.8,
+          "passed": true,
+          "reason": "The score is 0.80 because the actual output incorrectly states that every new refund, even small ones, is reviewed by a human, while the retrieval context clearly says refunds up to R$150 are approved automatically without human involvement, creating a clear contradiction.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response fully addressed the question about future refund approval with no irrelevant content.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output correctly states that because the user has made 3 refund requests in the last 60 days, the next request will be reviewed by a human and not approved automatically, matching the expected answer. The added policy detail about a R$150 automatic limit does not contradict the required s",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-07']; expected ['kb-07']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p11",
+      "input": "I made 3 refund requests in the last two months. Will the next small one be approved automatically?"
+    },
+    {
+      "actual_output": "I’m sorry, but I can’t guarantee that a refund will be approved. I can check whether your purchase meets the refund eligibility criteria and let you know the next steps. If you’d like me to look into a specific order, just share the order number (or I can find your recent orders for you).",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-05",
+        "kb-07"
+      ],
+      "retrieval_context": [
+        "Refund approval limits and human review - Important\nThe assistant never promises that a refund will be approved. It tells you whether the request is eligible and what happens next. The final decision follows the rules above.",
+        "Refund policy - when you are eligible and how much you get - When you are not eligible\n- The return window of 30 days has passed and the item is not defective.\n- The item is in the non-returnable list and there is no defect.\n- The item was returned used, damaged by the customer, or without its accessories.\n- The refund was already issued for the same item.\n\nOnly one open refund request is allowed per order item.",
+        "Refund policy - when you are eligible and how much you get - When you are eligible for a refund\n1. You returned the item within the 30-day return window and we received and inspected it.\n2. The item arrived defective, damaged or different from the description (reported within 7 days of delivery).\n3. The order was never delivered and the carrier investigation confirmed it is lost.\n4. The order status is unavailable or canceled and you already paid.\n5. The order was delivered more than 10 calendar days after the estimated date and you cancel before delivery (see delivery document)."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node (rank 1) is relevant – it notes \"The assistant never promises that a refund will be approved,\" the second node (rank 2) is also relevant – it \"lists situations where a refund is not eligible,\" and the third node (rank 3) likewise is relevant – it \"describes t",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 0.6667,
+          "passed": false,
+          "reason": "The score is 0.67 because two of the three sentences in the expected output are directly supported by node 1 in the retrieval context, while one sentence has no matching statement in any node.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": null,
+          "passed": null,
+          "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knqxc56xf02r1jc2wwcjjxwm` service tier `on_demand` on tokens per day (TPD): Limit 200"
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output correctly states that it cannot guarantee refund approval, aligns with the expected \"No\" and inability to promise approval, and offers to check eligibility and explain next steps, matching all key elements without contradiction.",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-05', 'kb-07']; expected ['kb-07']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p12",
+      "input": "Can you guarantee that my refund will be approved?"
+    },
+    {
+      "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knqxc56xf02r1jc2wwcjjxwm` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199725, Requested 1917. Please try again in 11m49.344s. Need more tokens? Upgrade to Dev T",
+      "id": "p13",
+      "input": "How many days does delivery take to the North region?"
+    },
+    {
+      "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knqxc56xf02r1jc2wwcjjxwm` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199534, Requested 1790. Please try again in 9m31.968s. Need more tokens? Upgrade to Dev Ti",
+      "id": "p14",
+      "input": "My order is 12 days past the estimated delivery date and still not delivered. Can I get my money back?"
+    },
+    {
+      "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knqxc56xf02r1jc2wwcjjxwm` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199353, Requested 1785. Please try again in 8m11.616s. Need more tokens? Upgrade to Dev Ti",
+      "id": "p15",
+      "input": "My order arrived 9 days later than estimated. Do I get anything for the delay?"
+    },
+    {
+      "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knqxc56xf02r1jc2wwcjjxwm` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199169, Requested 1974. Please try again in 8m13.775999999s. Need more tokens? Upgrade to ",
+      "id": "p16",
+      "input": "What does the order status 'unavailable' mean?"
+    },
+    {
+      "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knqxc56xf02r1jc2wwcjjxwm` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198985, Requested 1989. Please try again in 7m0.768s. Need more tokens? Upgrade to Dev Tie",
+      "id": "p17",
+      "input": "What does the status 'invoiced' mean?"
+    },
+    {
+      "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knqxc56xf02r1jc2wwcjjxwm` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198800, Requested 1977. Please try again in 5m35.664s. Need more tokens? Upgrade to Dev Ti",
+      "id": "p18",
+      "input": "Can I cancel my order after it has shipped?"
+    },
+    {
+      "error": "RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01knqxc56xf02r1jc2wwcjjxwm` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198613, Requested 1990. Please try again in 4m20.495999999s. Need more tokens? Upgrade to ",
+      "id": "p19",
+      "input": "How can I change the delivery address of my order?"
+    }
+  ]
+}

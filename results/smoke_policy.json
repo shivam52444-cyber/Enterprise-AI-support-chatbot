@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "tag": "smoke",
+    "created": "2026-11-07T18:53:00",
+    "llm_model": "openai/gpt-oss-120b",
+    "judge_model": "openai/gpt-oss-120b",
+    "guard_model": "openai/gpt-oss-120b",
+    "embed_model": "BAAI/bge-small-en-v1.5",
+    "top_k": 3,
+    "suite": "policy"
+  },
+  "cases": [
+    {
+      "actual_output": "A credit‑card refund usually takes **5 to 10 business days** after the refund is approved. It will appear on your next card statement.",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-06",
+        "kb-13"
+      ],
+      "retrieval_context": [
+        "Refund process and how long it takes - How long the money takes to arrive\nAfter approval:\n\n| Original payment method | Time to receive the refund |\n|---|---|\n| Credit card | 5 to 10 business days. It can appear on your next statement. |\n| Debit card | 3 to 7 business days. |\n| Boleto | 5 to 8 business days after you send us your bank account details. |\n| Voucher | Immediately, as voucher balance. |",
+        "Frequently asked questions - How long will my refund take?\n**How long will my refund take?**\nCredit card 5 to 10 business days, debit card 3 to 7, boleto 5 to 8 after bank details, voucher immediately. This counts from approval.",
+        "Refund process and how long it takes - Credit card installments\nIf you paid in installments, the refund follows the same installments. The bank decides how it appears on your statement."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node (rank 1) includes a table stating “5 to 10 business days. It can appear on your next statement,” directly answering the question; the second node (rank 2) repeats the same information “Credit card 5 to 10 business days, ... can appear on your next statement,”",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because sentence 1 directly matches node(s) in the retrieval context (e.g., node 1/2 stating “Credit card | 5 to 10 business days. It can appear on your next statement…”).",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly answered the question about credit card refund timing with no irrelevant statements.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output includes the same key facts as the expected output: a 5‑to‑10 business day timeframe, that it occurs after approval, and that it appears on the next statement. No contradictions are present, so it fully aligns with the evaluation steps.",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-06', 'kb-13']; expected ['kb-06', 'kb-13']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p01",
+      "input": "How long does a credit card refund take?"
+    },
+    {
+      "actual_output": "Your debit‑card refund will be credited in **3 to 7 business days** after it’s approved.",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-06",
+        "kb-13"
+      ],
+      "retrieval_context": [
+        "Frequently asked questions - How long will my refund take?\n**How long will my refund take?**\nCredit card 5 to 10 business days, debit card 3 to 7, boleto 5 to 8 after bank details, voucher immediately. This counts from approval.",
+        "Refund process and how long it takes - How long the money takes to arrive\nAfter approval:\n\n| Original payment method | Time to receive the refund |\n|---|---|\n| Credit card | 5 to 10 business days. It can appear on your next statement. |\n| Debit card | 3 to 7 business days. |\n| Boleto | 5 to 8 business days after you send us your bank account details. |\n| Voucher | Immediately, as voucher balance. |",
+        "Refund process and how long it takes - Steps\n1. You request a refund through the assistant or a human agent.\n2. If a return is needed, you send the item back using the return label.\n3. We receive and inspect the item. This takes 2 to 3 business days after it arrives.\n4. The refund is approved and sent to your original payment method.\n\nFor items that do not need a return (for example unavailable or lost orders), the refund starts right after approval."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the two relevant nodes (rank 1 and 2) appear before the irrelevant node (rank 3), and the irrelevant node’s reason – “It only describes the refund steps … without giving the 3‑to‑7 business day timeframe for debit cards.” – is correctly placed lower, giving perfect contextu",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly matches node(s) in retrieval context – it aligns with the 1st node’s phrasing and the 2nd node’s table entry.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the answer directly addressed the refund timeline question with no irrelevant content.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output correctly states the refund timeframe of 3 to 7 business days after approval, matching the expected output's key facts without any contradictions.",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-06', 'kb-13']; expected ['kb-06']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p02",
+      "input": "Mere debit card ka refund kitne din me aayega?"
+    },
+    {
+      "actual_output": "Sure! Since you paid with **boleto**, the refund works like this:\n\n1. **Refund approval** – Once the refund is approved, we’ll ask you for the bank account details where the money should be sent.  \n2. **Time to receive the money** – After we receive your bank details, the amount will be transferred in **5 to 8 business days**.\n\nIf you haven’t already opened a refund request, you can do it in **My Orders** on the website or let us know and we’ll start the process for you. Let us know if you’d like us to submit the refund request now!",
+      "tools_used": [
+        "search_policy"
+      ],
+      "retrieved_docs": [
+        "kb-06",
+        "kb-10",
+        "kb-13"
+      ],
+      "retrieval_context": [
+        "Refund process and how long it takes - How long the money takes to arrive\nAfter approval:\n\n| Original payment method | Time to receive the refund |\n|---|---|\n| Credit card | 5 to 10 business days. It can appear on your next statement. |\n| Debit card | 3 to 7 business days. |\n| Boleto | 5 to 8 business days after you send us your bank account details. |\n| Voucher | Immediately, as voucher balance. |",
+        "Frequently asked questions - How long will my refund take?\n**How long will my refund take?**\nCredit card 5 to 10 business days, debit card 3 to 7, boleto 5 to 8 after bank details, voucher immediately. This counts from approval.",
+        "Payments, installments and vouchers - Boleto\n- A boleto is valid for 3 days after it is created.\n- Payment confirmation can take up to 2 business days after you pay.\n- An unpaid boleto cancels the order automatically."
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the two relevant nodes (rank 1 and rank 2) directly mention \"Boleto | 5 to 8 business days after you send us your bank account details\" and \"boleto 5 to 8 after bank details,\" while the only irrelevant node (rank 3) only discusses validity and payment confirmation without a",
+          "threshold": 0.6
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the single sentence aligns directly with node 1 (and node 2) in the retrieval context, which explicitly state the 5‑to‑8 business day refund timeline after bank account details are sent.",
+          "threshold": 0.7
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context.",
+          "threshold": 0.8
+        },
+        "answer_relevancy": {
+          "score": 0.8333,
+          "passed": true,
+          "reason": "The score is 0.83 because the response included an irrelevant acknowledgement ('Sure!') that didn't address how to obtain the refund or its timeline, preventing a higher relevance rating.",
+          "threshold": 0.7
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual response states that after the customer provides bank account details, the refund is transferred in 5 to 8 business days, exactly matching the expected key fact. It adds extra helpful steps but does not contradict the required information, so it fully aligns with the evaluation criteria.",
+          "threshold": 0.7
+        },
+        "retrieval_hit": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "retrieved ['kb-06', 'kb-10', 'kb-13']; expected ['kb-06']",
+          "threshold": 1.0
+        },
+        "search_used": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "the agent searched the policies",
+          "threshold": 1.0
+        }
+      },
+      "id": "p03",
+      "input": "I paid by boleto. How do I get my refund and how long does it take?"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "max_error_rate": 0.1,
+  "policy": {
+    "faithfulness":         {"threshold": 0.8, "min_average": 0.85},
+    "answer_relevancy":     {"threshold": 0.7, "min_average": 0.8},
+    "contextual_precision": {"threshold": 0.6, "min_average": 0.6},
+    "contextual_recall":    {"threshold": 0.7, "min_average": 0.75},
+    "correctness":          {"threshold": 0.7, "min_average": 0.8},
+    "retrieval_hit":        {"threshold": 1.0, "min_average": 0.9},
+    "search_used":          {"threshold": 1.0, "min_average": 0.95},
+    "honest_refusal":       {"threshold": 0.7, "min_average": 0.8}
+  },
+  "guardrails": {
+    "label_match":          {"threshold": 1.0, "min_average": 0.9}
+  },
+  "agent": {
+    "correctness":          {"threshold": 0.7, "min_average": 0.75},
+    "tool_correctness":     {"threshold": 0.5, "min_average": 0.8},
+    "no_leak":              {"threshold": 1.0, "min_average": 1.0},
+    "refund_state":         {"threshold": 1.0, "min_average": 1.0}
+  }
+}
