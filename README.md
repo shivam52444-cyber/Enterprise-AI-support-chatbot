@@ -26,7 +26,7 @@ An enterprise-ready, highly secured autonomous AI Customer Support Agent built f
 The agent's safety policies, RAG retrieval accuracy, and guardrails were benchmarked using an automated LLM-as-a-judge pipeline (`openai/gpt-oss-120b`) across 3 explicit test suites (Baseline, Guardrails/Smoke, and Edge Policies) mapped over a real-world dataset of **100,000+ orders (1.5M+ complex relational rows)**.
 
 ### 📈 Aggregate Performance (Valid Execution Window)
-*Note: Cases p13–p19 hit upstream API rate limits during testing and were excluded from this batch aggregation.*
+*Note: Still testing*
 
 | Evaluation Metric | Aggregate Score | System Behavior Insights |
 | :--- | :---: | :--- |
